@@ -474,7 +474,7 @@ method fields ($table) {
 
 =cut
 
-  $self->logDebug("table", $table);
+  # $self->logDebug("table", $table);
 
 	my $sth = $self->dbh()->prepare("SELECT * FROM $table") or die "Can't prepare statement!\n";
 	$sth->execute or die "Can't execute statement!\n";
@@ -642,9 +642,7 @@ method queryhash ($query) {
 	# $self->logDebug("table", $table);
 
   my ($fieldstring) = $query =~ /^SELECT\s+(.+)\s+FROM/ims;
-  $self->logDebug("fieldstring", $fieldstring);
   $fieldstring =~ s/DISTINCT//ms;
-  # $self->logDebug("Fieldstring", $fieldstring);
   
   my $fields;
   if ( $fieldstring =~ /^\*$/ ) {
