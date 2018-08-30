@@ -53,7 +53,7 @@ method initialise ($hash) {
     } 
   ) || die "Can't open database file '$dbfile': $@\n";   	
 	$self->dbh($dbh);
-  $self->logDebug("dbh", $dbh);
+  # $self->logDebug("dbh", $dbh);
 
   return $self->dbh();
 }
