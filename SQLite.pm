@@ -53,7 +53,7 @@ method initialise ($hash) {
     } 
   ) || die "Can't open database file '$dbfile': $@\n";   	
 	$self->dbh($dbh);
-  # $self->logDebug("dbh", $dbh);
+  $self->logDebug("dbh", $dbh);
 
   return $self->dbh();
 }
@@ -642,7 +642,9 @@ method queryhash ($query) {
 	# $self->logDebug("table", $table);
 
   my ($fieldstring) = $query =~ /^SELECT\s+(.+)\s+FROM/ims;
+  $self->logDebug("fieldstring", $fieldstring);
   $fieldstring =~ s/DISTINCT//ms;
+  # $self->logDebug("Fieldstring", $fieldstring);
   
   my $fields;
   if ( $fieldstring =~ /^\*$/ ) {
@@ -684,7 +686,7 @@ method queryhasharray ($query) {
 		RETURN AN ARRAY OF HASHES
 
 =cut
-	$self->logDebug("query", $query);    ;
+	$self->logNote("query", $query);    ;
 	my $hasharray;
 
 	#### GET FIELDS 
